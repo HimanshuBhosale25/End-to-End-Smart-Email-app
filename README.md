@@ -130,17 +130,19 @@ Screenshots
 
 Here are some screenshots of the email dashboard in different modes:
 
--   **Light Mode**
-    ![Javatpoint](D:\Smart_Email\images\Screenshot 2024-12-11 034251.png)  
 
--   **Dark Mode**
-    ![Javatpoint](D:\Smart_Email\images\Screenshot 2024-12-11 034239.png)  
 
--   **View Full Body**
-    ![Javatpoint](D:\Smart_Email\images\Screenshot 2024-12-11 034339.png)  
+### Light Mode
+![Light Mode](images/Screenshot%202024-12-11%20034251.png)
 
-    **Generated Response**
-    ![Javatpoint](D:\Smart_Email\images\Screenshot 2024-12-11 034426.png)  
+### Dark Mode
+![Dark Mode](images/Screenshot%202024-12-11%20034239.png)
 
--   **Summary**
-    ![Javatpoint](D:\Smart_Email\images\Screenshot 2024-12-11 034448.png)  
+### View Full Body
+![View Full Body](images/Screenshot%202024-12-11%20034339.png)
+
+### Generated Response
+![Generated Response](images/Screenshot%202024-12-11%20034426.png)
+
+### Summary
+![Summary](images/Screenshot%202024-12-11%20034448.png)
