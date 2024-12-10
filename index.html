@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Dashboard 📧</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            margin: 0;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        /* Search Bar Styling */
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #1e3b73;
+            box-shadow: 0 0 5px rgba(30, 59, 115, 0.3);
+        }
+
+        /* Dark Mode Toggle Styling */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: #1e3b73; /* Dark Blue */
+            border-radius: 30px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode-toggle span {
+            margin-left: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .toggle-switch {
+            width: 50px;
+            height: 25px;
+            background-color: #e3e3e3;
+            border-radius: 25px;
+            display: flex;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch .circle {
+            width: 15px;
+            height: 15px;
+            background-color: #1e3b73;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Styling */
+        body.dark-mode {
+            background-color: #2b3a49;  /* Dark Blue */
+            color: #e3e3e3;
+        }
+
+        h1.dark-mode {
+            color: #c8f4c8; /* Light Green */
+        }
+
+        .email-box.dark-mode {
+            background-color: #3a4a61;
+            border-color: #2b3a49;
+            color: #e3e3e3;
+        }
+
+        .email-box.dark-mode h2 {
+            color: #c8f4c8;
+        }
+
+        .email-box.dark-mode p {
+            color: #ccc;
+        }
+
+        .email-box.dark-mode button {
+            background-color: #2b3a49;
+            border: 1px solid #c8f4c8;
+        }
+
+        .email-box.dark-mode button:hover {
+            background-color: #1e3b73;
+        }
+
+        /* Dark Mode Toggle Button Hover Effect */
+        .dark-mode-toggle:hover {
+            background-color: #0f2a50;  /* Darker Blue */
+        }
+
+        /* Dark Mode Toggle Button (circle) when dark mode is active */
+        .toggle-switch .circle {
+            background-color: #2b3a49;
+            transform: translateX(25px);
+        }
+
+        /* Email Box Styling */
+        .email-box {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #1e3b73;  /* Dark Blue */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .email-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-box h2 {
+            color: #1e3b73;  /* Dark Blue */
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .email-box p {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .email-box button {
+            background-color: #1e3b73;  /* Dark Blue */
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-box button:hover {
+            background-color: #0f2a50;  /* Darker Blue */
+        }
+
+        /* Category Dropdown Styling */
+        .category-dropdown {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            padding: 8px 15px;
+            background-color: #fff;
+            color: #1e3b73;  /* Default Dark Blue */
+            border: 1px solid #1e3b73;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .category-dropdown:hover {
+            background-color: #e3e3e3;  /* Light Gray on hover */
+        }
+
+        .category-dropdown.dark-mode {
+            background-color: #3a4a61;  /* Dark Blue */
+            border-color: #2b3a49;
+            color: #e3e3e3;
+        }
+
+        .category-dropdown.dark-mode:hover {
+            background-color: #2b3a49;  /* Darker Blue on hover */
+        }
+
+        .category-dropdown select {
+            background-color: transparent;
+            border: none;
+            color: inherit;
+            font-size: inherit;
+            cursor: pointer;
+        }
+
+        .generated-response, .summarized-email {
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Email Body Display */
+        .email-body-toggle {
+            color: #1e3b73;  /* Dark Blue */
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .email-body-toggle:hover {
+            color: #0f2a50;  /* Darker Blue */
+        }
+
+        /* Button style for view body */
+        .email-body-toggle-button {
+            background-color: #1e3b73; /* Dark Blue */
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .email-body-toggle-button:hover {
+            background-color: #0f2a50; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <h1>Email Dashboard 📧</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchBar" class="search-bar" placeholder="Search emails by title..." oninput="searchEmails()" />
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <div class="toggle-switch">
+            <div class="circle"></div>
+        </div>
+        <span>Dark Mode 🌙</span>
+    </div>
+
+    <!-- Container for emails -->
+    <div id="emails-container"></div>
+
+    <script>
+        let emails = [];
+        let isDarkMode = false;
+
+        // Fetch emails from the backend
+        fetch('http://127.0.0.1:8000/emails')
+            .then(response => response.json())
+            .then(data => {
+                emails = data.emails;
+                displayEmails(emails);
+            });
+
+        // Function to display emails
+        function displayEmails(emailsToDisplay) {
+            const emailsContainer = document.getElementById('emails-container');
+            emailsContainer.innerHTML = '';  // Clear the container
+
+            emailsToDisplay.forEach(email => {
+                const emailBox = document.createElement('div');
+                emailBox.classList.add('email-box');
+                if (isDarkMode) {
+                    emailBox.classList.add('dark-mode');
+                }
+                emailBox.innerHTML = 
+                    `<h2>${email.subject}</h2>
+                    <p><strong>Sender:</strong> ${email.sender}</p>
+                    <p><strong>Body:</strong> <button class="email-body-toggle-button" id="email-body-toggle-${email.id}">👁️ View full body</button></p>
+                    <div id="email-full-body-${email.id}" style="display:none;">
+                        <strong>Full Body:</strong>
+                        <p>${email.body}</p>
+                    </div>
+                    <button onclick="generateResponse('${email.id}')">📝 Generate Response</button>
+                    <button onclick="summarizeEmail('${email.id}')">📑 Summarize Email</button>
+                    <div id="response-container-${email.id}">
+                        <div class="generated-response" id="generated-response-${email.id}">
+                            <h3>Generated Response:</h3>
+                            <p id="generated-response-text-${email.id}"></p>
+                        </div>
+                        <div class="summarized-email" id="summarized-email-${email.id}">
+                            <h3>Summarized Email:</h3>
+                            <p id="summarized-email-text-${email.id}"></p>
+                        </div>
+                    </div>
+                    <div class="category-dropdown">
+                        <span>Mark Category</span>
+                        <select>
+                            <option value="inbox">Inbox</option>
+                            <option value="spam">Spam</option>
+                            <option value="sent">Sent</option>
+                            <option value="drafts">Drafts</option>
+                        </select>
+                    </div>` ;
+                emailsContainer.appendChild(emailBox);
+
+                // Add functionality to view the full body
+                const viewFullBodyBtn = document.getElementById(`email-body-toggle-${email.id}`);
+                const fullBody = document.getElementById(`email-full-body-${email.id}`);
+                viewFullBodyBtn.addEventListener('click', () => {
+                    fullBody.style.display = fullBody.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Generate response function
+        function generateResponse(emailId) {
+            fetch(`http://127.0.0.1:8000/generate_response/${emailId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const generatedResponseText = document.getElementById(`generated-response-text-${emailId}`);
+                    const summarizedEmailText = document.getElementById(`summarized-email-text-${emailId}`);
+                    const generatedResponseContainer = document.getElementById(`generated-response-${emailId}`);
+                    const summarizedEmailContainer = document.getElementById(`summarized-email-${emailId}`);
+
+                    // Show the generated response and hide the summarized email
+                    generatedResponseText.innerText = data.generated_response;
+                    generatedResponseContainer.style.display = 'block';
+                    summarizedEmailContainer.style.display = 'none';
+                });
+        }
+
+        // Summarize email function
+        function summarizeEmail(emailId) {
+            fetch(`http://127.0.0.1:8000/summarize_email/${emailId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const generatedResponseText = document.getElementById(`generated-response-text-${emailId}`);
+                    const summarizedEmailText = document.getElementById(`summarized-email-text-${emailId}`);
+                    const generatedResponseContainer = document.getElementById(`generated-response-${emailId}`);
+                    const summarizedEmailContainer = document.getElementById(`summarized-email-${emailId}`);
+
+                    // Show the summarized email and hide the generated response
+                    summarizedEmailText.innerText = data.summarized_email;
+                    summarizedEmailContainer.style.display = 'block';
+                    generatedResponseContainer.style.display = 'none';
+                });
+        }
+
+        // Search emails by subject or sender
+        function searchEmails() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const filteredEmails = emails.filter(email => 
+                email.subject.toLowerCase().includes(searchQuery) || 
+                email.sender.toLowerCase().includes(searchQuery)
+            );
+            displayEmails(filteredEmails);
+        }
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            document.querySelector('h1').classList.toggle('dark-mode', isDarkMode);
+            document.querySelectorAll('.email-box').forEach(box => {
+                box.classList.toggle('dark-mode', isDarkMode);
+            });
+            document.querySelectorAll('.search-bar').forEach(bar => {
+                bar.classList.toggle('dark-mode', isDarkMode);
+            });
+
+            // Toggle category dropdown for dark mode
+            document.querySelectorAll('.category-dropdown').forEach(dropdown => {
+                dropdown.classList.toggle('dark-mode', isDarkMode);
+            });
+
+            // Slide the circle inside the toggle switch
+            const circle = document.querySelector('.toggle-switch .circle');
+            circle.style.transform = isDarkMode ? 'translateX(25px)' : 'translateX(0)';
+        }
+    </script>
+</body>
+</html>
