@@ -3,7 +3,7 @@ Email Dashboard 📧
 
 This is a web-based email dashboard that integrates Generative AI powered by OpenAI to provide functionalities like generating email responses and summarizing emails. The dashboard allows users to search emails, toggle between dark mode and light mode, and interact with email categories like Inbox, Spam, Sent, and Drafts. The project also includes OAuth for secure user authentication.
 
-Features
+Features ✨
 --------
 
 -   **Email Display**: Shows emails with subject, sender, and body preview.
@@ -20,7 +20,7 @@ Features
 
 -   **OAuth Authentication**: Secure user authentication using OAuth for accessing the email data.
 
-Tech Stack
+Tech Stack 🛠️
 ----------
 
 -   **Frontend**: HTML, CSS, JavaScript
@@ -33,7 +33,7 @@ Tech Stack
 
 -   **Environment**: Conda (Python 3.10)
 
-Requirements
+Requirements 📝
 ------------
 
 ### Conda Environment Setup
@@ -82,19 +82,19 @@ uvicorn app:app --reload
 
 ```
 
-OAuth Authentication
+OAuth Authentication 🔒
 --------------------
 
 -   **OAuth Setup**: To secure access to email data, OAuth is used for authentication. The backend will handle user logins via OAuth providers (e.g., Google, Microsoft) and ensure secure access to email data.
 
 -   **OAuth Credentials**: You need to configure your OAuth credentials (client ID, client secret) in the `.env` file for the application to function correctly.
 
-Frontend (HTML, CSS, JavaScript)
+Frontend (HTML, CSS, JavaScript) 🌐
 --------------------------------
 
 The frontend is built using HTML, CSS, and JavaScript for rendering the dashboard interface and interacting with the backend.
 
-OAuth Authentication Flow
+OAuth Authentication Flow 🔄
 -------------------------
 
 -   **Login via OAuth**: When a user tries to access the email dashboard, they are prompted to log in using an OAuth provider (e.g., Google). This ensures that only authorized users can access the dashboard.
@@ -103,7 +103,7 @@ OAuth Authentication Flow
 
 -   **Secure API Access**: All communication between the frontend and backend is secured through OAuth tokens, ensuring that user data is protected.
 
-Usage
+Usage 🚀
 -----
 
 1.  **Start the backend**: Run the FastAPI server.
@@ -125,24 +125,24 @@ Usage
 
 6.  **Summarize Emails**: Click "📑 Summarize Email" to generate a brief summary of the email.
 
-Screenshots
+Screenshots 📸
 -----------
 
 Here are some screenshots of the email dashboard in different modes:
 
 
 
-### Light Mode
+### Light Mode ☀️
 ![Light Mode](images/Screenshot%202024-12-11%20034251.png)
 
-### Dark Mode
+### Dark Mode 🌙
 ![Dark Mode](images/Screenshot%202024-12-11%20034239.png)
 
-### View Full Body
+### View Full Body 📧
 ![View Full Body](images/Screenshot%202024-12-11%20034339.png)
 
-### Generated Response
+### Generated Response 📝
 ![Generated Response](images/Screenshot%202024-12-11%20034426.png)
 
-### Summary
+### Summary 📑
 ![Summary](images/Screenshot%202024-12-11%20034448.png)
